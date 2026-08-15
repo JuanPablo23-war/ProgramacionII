@@ -43,8 +43,12 @@ public class TextSimulator {
             }
 
            } 
-        
-        if 
+        if (isDiscounted[0]) {
+            tax -= tax * discounts.get(0).getPercentage();
+        }
+        if (isDiscounted[1]) {
+            tax -= tax * discounts.get(1).getPercentage();
+        }
         return tax;
     }
 }

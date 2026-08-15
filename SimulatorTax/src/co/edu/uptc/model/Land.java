@@ -6,10 +6,9 @@ public class Land {
   private int status;
   private String use;
   private int CadastreNumber;
-  private long cadastralValue;
+  private double cadastralValue;
 
-  public Land(String address, int area, int status, String use, int cadastreNumber, long cadastralValue) {
-    this.address = address;
+  public Land( int area, int status, String use, int cadastreNumber, double cadastralValue) {
     this.area = area;
     this.status = status;
     this.use = use;
@@ -37,7 +36,7 @@ public class Land {
     return use;
   }
 
-  public long getCadastralValue() {
+  public double getCadastralValue() {
     return cadastralValue;
   }
 
