@@ -13,7 +13,7 @@ public class Presenter {
     public Presenter() {
         calculator = new Calculator();
         ioManager = new IOManager();
-        messages = ResourceBundle.getBundle("greeting", Locale.getDefault());  
+        messages = ResourceBundle.getBundle("resources/greeting", Locale.getDefault());  
     }
 
     public void changeLanguage() {
@@ -24,22 +24,30 @@ public class Presenter {
             case 1 -> locale = Locale.ENGLISH;
             case 2 -> locale = Locale.FRENCH;
         }
-        messages = ResourceBundle.getBundle("greeting", locale);
+        messages = ResourceBundle.getBundle("resources/greeting", locale);
     }
 
-    public void menu() {
+    public String[] operations(){
         String[] options = {messages.getString("texto_sumar"),
             messages.getString("texto_restar"), 
             messages.getString("texto_multiplicar"),
             messages.getString("texto_dividir"), 
-            messages.getString("texto_salir"),
-            messages.getString("texto_cambiar_idioma")};
-        int choice = -1;
+            messages.getString("texto_cambiar_idioma"),
+            messages.getString("texto_salir")};
+        return options;
+    }
 
-        while (choice != 4) {
+    public void menu() {
+        int choice = -1;
+        while (choice != 5) {
+            String[] options = operations();
             choice = ioManager.showOptionDialog(messages.getString("mensaje_operacion"), options);
-            if (choice == 4) {
+            if (choice == 5) {
                 break;
+            }
+            if (choice == 4){
+                changeLanguage();
+                continue;
             }
             int a = Integer.parseInt(ioManager.showInputDialog(messages.getString("mensaje_ingresar_numero1")));
             int b = Integer.parseInt(ioManager.showInputDialog(messages.getString("mensaje_ingresar_numero2")));
@@ -60,8 +68,6 @@ public class Presenter {
                         ioManager.showMessage(e.getMessage());
                     }
                     break;
-                case 4: 
-                    changeLanguage();
             }
         }
     }
