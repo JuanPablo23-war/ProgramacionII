@@ -1,0 +1,5 @@
+"Carrera 10 # 15-20",120, 1,"Residencial",1001001,85000000.0
+"Calle 25 # 8-45",250,1,"Comercial",1001002,210000000.0
+"Vereda El Roble, Lote 3",1500,0,"Comercial",1001003,125000000.0
+"Avenida Central # 42-10",90,1,"residencial",1001004,175000000.0
+"Calle 6 # 12-30",180,0,"residencial",1001005,132500000.0

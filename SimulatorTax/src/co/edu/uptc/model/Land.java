@@ -8,7 +8,8 @@ public class Land {
   private int CadastreNumber;
   private double cadastralValue;
 
-  public Land( int area, int status, String use, int cadastreNumber, double cadastralValue) {
+  public Land( String address, int area, int status, String use, int cadastreNumber, double cadastralValue) {
+    this.address = address;
     this.area = area;
     this.status = status;
     this.use = use;

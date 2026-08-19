@@ -40,12 +40,13 @@ public class Presenter {
     }
 
     public void addLand() {
+        String address = ioManager.inputInformation("Ingrese la dirección del terreno: ");
         int area = Integer.parseInt(ioManager.inputInformation("Ingrese el área del terreno: "));
         int cadastreNumber = Integer.parseInt(ioManager.inputInformation("Ingrese el número de catastro: "));
         double cadastralValue = Double.parseDouble(ioManager.inputInformation("Ingrese el valor catastral: "));
         String use = ioManager.inputInformation("Ingrese el uso del terreno (residencial, comercial): ");
         int status = Integer.parseInt(ioManager.inputInformation("Ingrese el estrato del terreno (1-6): "));
-        Land land = new Land(area, status, use, cadastreNumber, cadastralValue);
+        Land land = new Land(address, area, status, use, cadastreNumber, cadastralValue);
         textSimulator.addLand(land);
     }
 
