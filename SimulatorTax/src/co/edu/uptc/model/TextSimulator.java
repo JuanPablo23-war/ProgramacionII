@@ -2,6 +2,7 @@ package co.edu.uptc.model;
 
 import java.util.ArrayList;
 
+import co.edu.uptc.persistance.DiscountReader;
 import co.edu.uptc.persistance.LandReader;
 import co.edu.uptc.persistance.RangeReader;
 
@@ -15,8 +16,15 @@ public class TextSimulator {
         lands = new ArrayList<>();
         loadLands();
         ranges = new ArrayList<>();
+        loadRanges();
         discounts = new ArrayList<>();
+        getDiscounts();
         statusPercentages = new double[]{0.004,0.0055,0.00675,0.00775,0.0085,0.0105};
+    }
+
+    public void getDiscounts() {
+        DiscountReader discountReader = new DiscountReader();
+        discounts = discountReader.getDiscounts();
     }
 
     public void loadRanges(){
@@ -53,7 +61,7 @@ public class TextSimulator {
 
     public double calculateTax(Land land, boolean[] isDiscounted) {
         double tax = 0;
-        if (land.getUse().equals("residencial")) {
+        if (land.getUse().equalsIgnoreCase("residencial")) {
             tax = land.getCadastralValue() * statusPercentages[land.getStatus()-1];
         }else {
            for (Range range : ranges) {

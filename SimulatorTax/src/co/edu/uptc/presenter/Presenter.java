@@ -16,11 +16,11 @@ public class Presenter {
     }
 
     public String menu() {
-        String menu = "1. Add Land\n";
-        menu += "2. Add Range\n";
-        menu += "3. Add Discount\n";
-        menu += "4. Calculate Tax\n";
-        menu += "5. Exit\n";
+        String menu = "1. Agregar Terreno\n";
+        menu += "2. Agregar Rango\n";
+        menu += "3. Agregar Descuento\n";
+        menu += "4. Calcular Impuesto\n";
+        menu += "5. Salir\n";
         return menu;
     }
 

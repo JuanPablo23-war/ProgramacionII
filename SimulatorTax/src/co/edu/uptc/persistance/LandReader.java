@@ -15,8 +15,6 @@ public class LandReader {
             FileReader source = new FileReader(filePath);
             BufferedReader reader = new BufferedReader(source);  
             String line;
-
-        
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 String address = data[0];
