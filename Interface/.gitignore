@@ -1,0 +1,5 @@
+.vscode
+bin
+lib
+src/co/edu/uptc/model
+src/co/edu/uptc/presenter
