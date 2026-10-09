@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import co.edu.uptc.persistance.DiscountReader;
 import co.edu.uptc.persistance.LandReader;
 import co.edu.uptc.persistance.RangeReader;
+import co.edu.uptc.persistance.StratumReader;
 
 public class TextSimulator {
     private ArrayList<Land> lands;
     private ArrayList<Range> ranges;
     private ArrayList<Discount> discounts;
     private double[] statusPercentages;
+    private LandReader landReader;
 
     public TextSimulator() {
         lands = new ArrayList<>();
@@ -19,7 +21,12 @@ public class TextSimulator {
         loadRanges();
         discounts = new ArrayList<>();
         getDiscounts();
-        statusPercentages = new double[]{0.004,0.0055,0.00675,0.00775,0.0085,0.0105};
+        getStratum();
+    }
+
+    public void getStratum(){
+        StratumReader stratumReader = new StratumReader();
+        statusPercentages = stratumReader.readRanges();
     }
 
     public void getDiscounts() {
@@ -29,12 +36,12 @@ public class TextSimulator {
 
     public void loadRanges(){
         RangeReader rangeReader = new RangeReader();
-        ranges = rangeReader.readRanges("data/ranges.txt");
+        ranges = rangeReader.readRanges();
     }
 
     public void loadLands(){
-        LandReader landReader = new LandReader();
-        lands = landReader.land("data/lands.txt");
+        landReader = new LandReader();
+        lands = landReader.land("data/lands.csv");
     }
 
     public void addLand(Land land) {
@@ -49,11 +56,11 @@ public class TextSimulator {
         discounts.add(discount);
     }
 
-    public Land findLand(int cadastreNumber) {
+    public Land findLand(String cadastreNumber) {
         Land findLand = null;
         for (Land land : lands) {
-            if (land.getCadastreNumber() == cadastreNumber) {
-                findLand = land;
+            if (land.getCadastreNumber().equals(cadastreNumber)) {
+                findLand =  land;
             }
         }
         return findLand;

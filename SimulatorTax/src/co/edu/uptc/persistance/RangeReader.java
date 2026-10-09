@@ -1,38 +1,27 @@
 package co.edu.uptc.persistance;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import co.edu.uptc.model.Range;
 
 public class RangeReader {
-
-    public ArrayList<Range> readRanges(String filePath) {
+    public ArrayList<Range> readRanges() {
         ArrayList<Range> ranges = new ArrayList<>();
-        try{
-            FileReader source = new FileReader(filePath);
-            BufferedReader reader = new BufferedReader(source);  
-            String line;
-
-            while ((line = reader.readLine()) != null) {
+        Properties p = new Properties();
+        try {
+            p.load(new FileReader("config.properties"));
+            for (int i = 1;i<=6; i++){
+                String line = p.getProperty("range_"+ i);
                 String[] data = line.split(",");
-                int min = Integer.parseInt(data[0]);
-                int max = Integer.parseInt(data[1]);
-                double percentage = Double.parseDouble(data[2]);
-                Range range = new Range(min, max, percentage);
-                ranges.add(range);
+                ranges.add(new Range(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Double.parseDouble(data[2])))  ; 
             }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + e.getMessage());
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println("Error parsing number: " + e.getMessage());
+            e.printStackTrace();
         }
         return ranges;
     }
+
 }
