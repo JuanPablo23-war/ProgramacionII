@@ -15,12 +15,11 @@ public class MenuBtn  extends  JButton{
     }
 
     public void configButton(Color btnColor) {
-       // Color btnColor = new Color(245, 245, 245);
         this.setFont(new Font("SansSerif", Font.PLAIN, 14));
         this.setBackground(btnColor);
         this.setForeground(Color.DARK_GRAY);
         this.setFocusPainted(false);
-        this.setBorder(new EmptyBorder(15, 25, 15, 25)); // Padding interno
+        this.setBorder(new EmptyBorder(15, 25, 15, 25)); 
         this.setContentAreaFilled(true);
         this.setOpaque(true);
         addMauseEvent(btnColor);

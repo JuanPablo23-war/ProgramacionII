@@ -7,9 +7,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 
 public class ButtonWithIcon extends JButton {
+    private Color btnColor;
 
-    public ButtonWithIcon(String title, String fileRoute) {
+    public ButtonWithIcon(String title, String fileRoute, Color btnColor) {
         super(title);
+        this.btnColor = btnColor;
         configButton();
         // Carga y configuración del ícono
         loadImg(fileRoute);
@@ -18,13 +20,15 @@ public class ButtonWithIcon extends JButton {
     }
 
     public void configButton() {
-        Color btnColor = new Color(70, 130, 20);
         this.setBackground(btnColor);
         this.setForeground(Color.WHITE);
-        this.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        this.setFont(new Font("Nunito Sans", Font.BOLD, 16));
         this.setFocusPainted(false);
         this.setBorder(BorderFactory.createLineBorder(btnColor, 8));
-        this.setPreferredSize(new Dimension(140, 180));
+        Dimension buttonSize = new Dimension(140, 180);
+        this.setPreferredSize(buttonSize);
+        this.setMinimumSize(buttonSize);
+        this.setMaximumSize(buttonSize);
         addMauseEvent(btnColor);
     }
 
@@ -61,4 +65,5 @@ public class ButtonWithIcon extends JButton {
             }
         });
     }
+
 }

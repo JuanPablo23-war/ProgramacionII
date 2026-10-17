@@ -1,26 +1,75 @@
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-public class MyFrame extends  JFrame{
-    private ButtonWithIcon button1;
+public class MyFrame extends JFrame {
+    private MyPanel myPanel;
     private HeaderPanel headerPanel;
-    public MyFrame(){
-        super();
-        this.setSize(1200, 250);
-        this.setLayout(new BorderLayout());
+    private ButtonsPanel buttonPanel;
+    private ScrollHorizontal scrollHorizontal;
+
+    public MyFrame() {
+        super("Gobierno de amazonas");
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
+
+        myPanel = new MyPanel();
+       
+
         headerPanel = new HeaderPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
-        button1 = new ButtonWithIcon("Calendario","#");
-        add(headerPanel, BorderLayout.NORTH);
-        panel.add(button1);
-        this.getContentPane().add(panel);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+        scrollHorizontal = new ScrollHorizontal(routes());
+        buttonPanel = new ButtonsPanel();
+
+        mapOut();
+
+        JScrollPane scrollPane = new JScrollPane(myPanel);
+        scrollPane.setVerticalScrollBarPolicy(
+                scrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(
+                scrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        add(scrollPane, BorderLayout.CENTER);
+        setVisible(true);
+    }
+
+    public ArrayList<String> routes() {
+        ArrayList<String> images = new ArrayList<>();
+        images.add("data/scrollImages/image1.jpg");
+        images.add("data/scrollImages/imagen2.jpg");
+        images.add("data/scrollImages/121970_121970_5000x1250.png");
+        images.add("data/scrollImages/imagen4.jpg");
+        images.add("data/scrollImages/imagen5.jpg");
+        return images;
+    }
+
+    public void mapOut() {
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.gridx = 0;
+        c.weightx = 1;
+        c.fill = GridBagConstraints.BOTH;
+
+        c.gridy = 0;
+        c.weighty = 0.0;
+        myPanel.add(headerPanel, c);
+
+        c.gridy = 1;
+        c.weighty = 0.0;
+        myPanel.add(scrollHorizontal, c);
+
+        c.gridy = 2;
+        c.weighty = 0.0;
+        c.fill = GridBagConstraints.NONE;
+        myPanel.add(buttonPanel, c);
+
     }
 }
