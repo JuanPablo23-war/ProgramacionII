@@ -1,3 +1,4 @@
+package co.edu.uptc.view;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.Rectangle;
@@ -6,8 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 
-public class MyPanel extends JPanel implements Scrollable {
-    public MyPanel() {
+public class ScrollPanel extends JPanel implements Scrollable {
+    public ScrollPanel() {
         super(new GridBagLayout());
     }
 

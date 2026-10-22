@@ -1,20 +1,19 @@
+package co.edu.uptc.view;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class MyFrame extends JFrame {
-    private MyPanel myPanel;
+public class MainFrame extends JFrame {
+    private ScrollPanel scrollPanel;
     private HeaderPanel headerPanel;
     private ButtonsPanel buttonPanel;
     private ScrollHorizontal scrollHorizontal;
 
-    public MyFrame() {
+    public MainFrame() {
         super("Gobierno de amazonas");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -22,8 +21,7 @@ public class MyFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        myPanel = new MyPanel();
-       
+        scrollPanel = new ScrollPanel();
 
         headerPanel = new HeaderPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
@@ -32,7 +30,7 @@ public class MyFrame extends JFrame {
 
         mapOut();
 
-        JScrollPane scrollPane = new JScrollPane(myPanel);
+        JScrollPane scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setVerticalScrollBarPolicy(
                 scrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(
@@ -60,16 +58,16 @@ public class MyFrame extends JFrame {
 
         c.gridy = 0;
         c.weighty = 0.0;
-        myPanel.add(headerPanel, c);
+        scrollPanel.add(headerPanel, c);
 
         c.gridy = 1;
         c.weighty = 0.0;
-        myPanel.add(scrollHorizontal, c);
+        scrollPanel.add(scrollHorizontal, c);
 
         c.gridy = 2;
         c.weighty = 0.0;
         c.fill = GridBagConstraints.NONE;
-        myPanel.add(buttonPanel, c);
+        scrollPanel.add(buttonPanel, c);
 
     }
 }

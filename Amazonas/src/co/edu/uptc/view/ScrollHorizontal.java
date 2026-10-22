@@ -1,3 +1,4 @@
+package co.edu.uptc.view;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
